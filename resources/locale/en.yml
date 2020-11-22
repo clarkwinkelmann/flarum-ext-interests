@@ -1,0 +1,8 @@
+clarkwinkelmann-interests:
+    forum:
+        user_controls:
+            edit: Edit interests
+
+        modal:
+            title: My interests
+            submit: Save

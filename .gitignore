@@ -1,0 +1,6 @@
+node_modules
+vendor
+composer.lock
+
+# Do not include dist files for demo extension. Remove this if you're actually publishing it
+js/dist
