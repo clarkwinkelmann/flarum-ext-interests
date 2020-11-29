@@ -12,3 +12,14 @@ clarkwinkelmann-interests:
             heading: Interests
             editOwn: Edit own interests
             editAny: Edit everyone's interests
+
+        settings:
+            title: Manage Interests
+            save: Save
+            delete: Delete
+            confirmDelete: Delete {name}? This will disconnect the interest from all users.
+            new: New interest
+            fields:
+                name: Name
+                color: Color
+                icon: Icon

@@ -12,12 +12,16 @@ return [
         ->js(__DIR__ . '/js/dist/forum.js'),
 
     (new Extend\Frontend('admin'))
-        ->js(__DIR__ . '/js/dist/admin.js'),
+        ->js(__DIR__ . '/js/dist/admin.js')
+        ->css(__DIR__ . '/resources/less/admin.less'),
 
     new Extend\Locales(__DIR__ . '/resources/locale'),
 
     (new Extend\Routes('api'))
-        ->get('/interests', 'clarkwinkelmann-interests.index', Controllers\ListInterestController::class),
+        ->get('/interests', 'clarkwinkelmann-interests.index', Controllers\ListInterestController::class)
+        ->post('/interests', 'clarkwinkelmann-interests.store', Controllers\StoreInterestController::class)
+        ->patch('/interests/{id:[0-9]+}', 'clarkwinkelmann-interests.update', Controllers\UpdateInterestController::class)
+        ->delete('/interests/{id:[0-9]+}', 'clarkwinkelmann-interests.delete', Controllers\DeleteInterestController::class),
 
     (new Extend\Model(User::class))
         ->belongsToMany('interests', Interest::class, 'clarkwinkelmann_interest_user'),

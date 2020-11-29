@@ -7,7 +7,7 @@ use Flarum\Api\Serializer\AbstractSerializer;
 
 class InterestSerializer extends AbstractSerializer
 {
-    protected $type = 'clarkwinkelmann-interests';
+    protected $type = 'interests';
 
     /**
      * @param Interest $model

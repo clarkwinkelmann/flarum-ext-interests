@@ -4,12 +4,12 @@ import Model from 'flarum/Model';
 import User from 'flarum/models/User';
 import UserControls from 'flarum/utils/UserControls';
 import Button from 'flarum/components/Button';
-import Interest from './models/Interest';
+import Interest from '../common/models/Interest';
 import InterestBadge from './components/InterestBadge';
 import UserInterestsModal from './components/UserInterestsModal';
 
 app.initializers.add('clarkwinkelmann-interests', () => {
-    app.store.models['clarkwinkelmann-interests'] = Interest;
+    app.store.models['interests'] = Interest;
 
     User.prototype.interests = Model.hasMany('interests');
 

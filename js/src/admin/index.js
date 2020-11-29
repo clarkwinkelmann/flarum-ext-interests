@@ -2,8 +2,14 @@ import {extend} from 'flarum/extend';
 import app from 'flarum/app';
 import PermissionGrid from 'flarum/components/PermissionGrid';
 import ItemList from 'flarum/utils/ItemList';
+import Interest from '../common/models/Interest';
+import SettingsModal from './components/SettingsModal';
 
 app.initializers.add('clarkwinkelmann-interests', () => {
+    app.extensionSettings['clarkwinkelmann-interests'] = () => app.modal.show(SettingsModal);
+
+    app.store.models['interests'] = Interest;
+
     extend(PermissionGrid.prototype, 'permissionItems', sections => {
         const items = new ItemList();
 
