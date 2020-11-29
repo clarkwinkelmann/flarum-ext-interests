@@ -6,3 +6,9 @@ clarkwinkelmann-interests:
         modal:
             title: My interests
             submit: Save
+
+    admin:
+        permissions:
+            heading: Interests
+            editOwn: Edit own interests
+            editAny: Edit everyone's interests

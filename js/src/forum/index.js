@@ -24,6 +24,10 @@ app.initializers.add('clarkwinkelmann-interests', () => {
     });
 
     extend(UserControls, 'userControls', (items, user) => {
+        if (!user.attribute('canEditInterests')) {
+            return;
+        }
+
         items.add('clarkwinkelmann-interests', Button.component({
             icon: 'fas fa-network-wired',
             onclick() {

@@ -3,8 +3,10 @@
 namespace ClarkWinkelmann\Interests\Providers;
 
 use ClarkWinkelmann\Interests\Serializers\InterestSerializer;
+use Flarum\Api\Event\Serializing;
 use Flarum\Api\Event\WillGetData;
 use Flarum\Api\Serializer\BasicUserSerializer;
+use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Event\GetApiRelationship;
 use Flarum\Foundation\AbstractServiceProvider;
 
@@ -14,6 +16,7 @@ class UserAttributes extends AbstractServiceProvider
     {
         $this->app['events']->listen(GetApiRelationship::class, [$this, 'getApiRelationship']);
         $this->app['events']->listen(WillGetData::class, [$this, 'willGetData']);
+        $this->app['events']->listen(Serializing::class, [$this, 'serializing']);
     }
 
     public function getApiRelationship(GetApiRelationship $event)
@@ -33,6 +36,13 @@ class UserAttributes extends AbstractServiceProvider
         // Handle all controllers for user resources, like ShowUser
         if (in_array('groups', $event->controller->include)) {
             $event->addInclude('interests');
+        }
+    }
+
+    public function serializing(Serializing $event)
+    {
+        if ($event->isSerializer(UserSerializer::class)) {
+            $event->attributes['canEditInterests'] = $event->actor->can('editInterests', $event->model);
         }
     }
 }

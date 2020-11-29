@@ -14,6 +14,8 @@ class ListInterestController extends AbstractListController
 
     protected function data(ServerRequestInterface $request, Document $document)
     {
+        $request->getAttribute('actor')->assertRegistered();
+
         return Interest::query()->orderBy('name')->get();
     }
 }

@@ -19,7 +19,7 @@ class SaveUser extends AbstractServiceProvider
         $interests = Arr::get($event->data, 'relationships.interests.data');
 
         if (is_array($interests)) {
-            // TODO: check the actor is allowed to edit that user
+            $event->actor->assertCan('editInterests', $event->user);
 
             $interestIds = [];
 
